@@ -1,0 +1,120 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "Hi",
+        "Hey",
+        "Hello",
+        "Good day"
+      ],
+      "responses": [
+        "Hello! Welcome to CodSoft. How can I assist you today?",
+        "Hi there! How can I help you with our services or internship programs?",
+        "Hey! Welcome to CodSoft. What would you like to know about our services or internships?"
+      ]
+    },
+    {
+      "tag": "internship_info",
+
+      "patterns": [
+        "Tell me about internships",
+        "What internships do you offer?",
+        "Internship details",
+        "intern",
+        "internship",
+        "internships"
+      ],
+      "responses": [
+        "We offer virtual internship opportunities in web development and app development. Our internships typically last for 4 weeks.",
+        "Our virtual internships focus on web development and app development projects and last for 4 weeks.",
+        "You can intern with us virtually in web development or app development roles for a duration of 4 weeks."
+      ]},
+    {
+      "tag": "internship_duration",
+      "patterns": [
+        "duration",
+        "what is the duration",
+        "how much is durations",
+        "time of internship"
+      ],
+      "responses": ["Duration of the internship is 4 weeks."]
+    },
+    {
+      "tag": "internship_type",
+      "patterns": [
+        "type of internship",
+        "online",
+        "offline",
+        "virtual",
+        "online or offline",
+        "hybrid or online or offline"
+      ],
+      "responses": [
+        "We offer virtual internship opportunities in web development and app development. Our internships typically last for 4 weeks.",
+        "Our virtual internships focus on web development and app development projects.",
+        "You can intern with us virtually in web development or app development roles for a duration of 4 weeks."
+      ]},
+    {
+      "tag": "application_info",
+      "patterns": [
+        "How can I apply for an internship?",
+        "Internship application process",
+        "Where do I apply for an internship?"
+      ],
+      "responses": [
+        "To apply for an internship, visit our website and submit your application through the careers section.",
+        "You can apply for our internships by submitting your resume and cover letter through our website.",
+        "Visit our careers page to apply for an internship. We look forward to reviewing your application!"
+      ]
+    },
+    {
+      "tag": "skills_info",
+      "patterns": [
+        "What skills are required for your internships?",
+        "Skills needed for internships",
+        "Internship requirements"
+      ],
+      "responses": [
+        "For our internships, we look for skills in programming languages like Python, JavaScript, and frameworks like React and Django.",
+        "Essential skills include proficiency in programming languages such as Python and JavaScript, and experience with web frameworks.",
+        "Candidates should have strong skills in programming and familiarity with web development technologies."
+      ]
+    },
+    {
+      "tag": "service_info",
+      "patterns": [
+        "What services do you offer?",
+        "Tell me about your services",
+        "Services details",
+        "services",
+        "products"
+
+      ],
+      "responses": [
+        "Our services include web development and app development."
+      ]
+    },
+    {
+      "tag": "service_type",
+      "patterns": [
+        "What type of services do you offer?",
+        "What are the service types?",
+        "Type of service",
+        "service",
+        "app development",
+        "web development",
+        "html",
+        "css",
+        "javascript",
+        "php",
+        "MERN",
+        "react",
+        "flutter"
+      ],
+      "responses": [
+        "We provide web development and app development services."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodSoft Internship Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .container {
+            width: 60%;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .chat-log {
+            height: 300px;
+            overflow-y: scroll;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        .message {
+            margin-bottom: 10px;
+            padding: 8px 12px;
+            border-radius: 5px;
+        }
+        .user-message {
+            text-align: right;
+            background-color: #e6f2ff;
+            float: right;
+            padding: 10px;
+            margin-left: 20%;
+            max-width: 70%;
+            border-radius: 10px;
+        }
+        .bot-message {
+            text-align: left;
+            background-color: #f0f0f0;
+            float: left;
+            padding: 10px;
+            margin-right: 20%;
+            max-width: 70%;
+            border-radius: 10px;
+        }
+        .button-container {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        button {
+            margin: 5px;
+            padding: 8px 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #f0f0f0;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #e0e0e0;
+        }
+        .text-input-container {
+            text-align: center;
+        }
+        .text-input {
+            width: 70%;
+            padding: 8px;
+            font-size: 14px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>CodSoft Internship Chatbot</h1>
+
+        <div class="chat-log" id="chat-log">
+            {% for entry in chat_log %}
+                {% if entry[0] == "user" %}
+                    <div class="user-message message">User: <strong>{{ entry[1] }}</strong></div>
+                {% else %}
+                    <div class="bot-message message">{{ entry[1] }}</div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <div class="button-container">
+            {% for choice_key in choices %}
+                <button onclick="buttonClick('{{ choice_key }}')">{{ choice_key }}</button>
+            {% endfor %}
+        </div>
+
+        <div class="text-input-container">
+            <input type="text" id="user-input" class="text-input" placeholder="Type your request...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        function buttonClick(choice) {
+            $.ajax({
+                type: 'POST',
+                url: '/get_response',
+                contentType: 'application/json',
+                data: JSON.stringify({'choice': choice}),
+                success: function(response) {
+                    $('#chat-log').append('<div class="user-message message">User: <strong>' + choice + '</strong></div>');
+                    $('#chat-log').append('<div class="bot-message message">' + response.response + '</div>');
+                    $('#chat-log').scrollTop($('#chat-log')[0].scrollHeight);
+                }
+            });
+        }
+
+        function sendMessage() {
+            var userInput = $('#user-input').val().trim();
+            if (userInput !== '') {
+                $('#chat-log').append('<div class="user-message message">User: <strong>' + userInput + '</strong></div>');
+                $('#user-input').val('');
+                $.ajax({
+                    type: 'POST',
+                    url: '/get_response',
+                    contentType: 'application/json',
+                    data: JSON.stringify({'user_input': userInput}),
+                    success: function(response) {
+                        $('#chat-log').append('<div class="bot-message message">' + response.response + '</div>');
+                        $('#chat-log').scrollTop($('#chat-log')[0].scrollHeight);
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>
